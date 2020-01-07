@@ -1,0 +1,146 @@
+<div class="container">
+    <div class="card signup-card mt-5">
+        <div class="card-body">
+            <h2 class="mt-2">Signup</h2>
+
+            <div *ngIf="error=='User already exists'">
+                    <div class="jumbotron cart-jumbotron">
+                            <h4>User already exists</h4>
+                    </div> 
+            </div>
+
+            <form [formGroup]="signupForm">
+
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col-sd-12 col-md-12 col-lg-6">
+
+                            <label for="uname"><h4>Username<span class="text-danger">*</span></h4></label>
+                            <input 
+                                type="text"
+                                class="form-control" 
+                                id="uname" 
+                                name="uname" 
+                                placeholder="Enter Username"  
+                                formControlName="userName"
+                            >
+                            <div *ngIf="signupForm.get('userName').touched">
+                                <div  *ngIf="signupForm.get('userName').invalid">
+                                    <div *ngIf="signupForm.get('userName').errors.required">
+                                        <div class="text-danger">UserName is required<div class="text-break">User Name cannot exceed 10 characters.</div></div>
+                                    </div>
+
+                                    <div *ngIf="signupForm.get('userName').errors.minlength">
+                                        <div class="text-danger">User Name must at least have 2 characters.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sd-12 col-md-6 col-lg-6 mt-3">
+
+                            <label for="fname"><h4>FirstName<span class="text-danger">*</span></h4></label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="fname" 
+                                name="fname" 
+                                placeholder="Enter First Name" 
+                                formControlName="firstName"
+                            >
+                            <div *ngIf="signupForm.get('firstName').touched">
+                                <div  *ngIf="signupForm.get('firstName').invalid">
+                                    <div *ngIf="signupForm.get('firstName').errors.required">
+                                        <div class="text-danger">FirstName is required<div class="text-break">First Name cannot exceed 10 characters.</div></div>
+                                    </div>
+
+                                    <div *ngIf="signupForm.get('firstName').errors.minlength">
+                                        <div class="text-danger">First Name must at least have 2 characters.</div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+    
+                        <div class="col-sd-12 col-md-6 col-lg-6 mt-3">
+                            <label for="lname"><h4>Last Name</h4></label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="lname" 
+                                name="lname" 
+                                placeholder="Enter Last Name" 
+                                formControlName="lastName"
+                            >
+                        </div>
+    
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                            <div class="col-sd-12 col-md-6 col-lg-6 mt-3">
+
+                                <label for="password"><h4>Password<span class="text-danger">*</span></h4></label>
+                                <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    id="password" 
+                                    placeholder="Enter Password" 
+                                    formControlName="password"
+                                >
+                                <div *ngIf="signupForm.get('password').touched">
+                                <div  *ngIf="signupForm.get('password').invalid">
+                                    <div *ngIf="signupForm.get('password').errors.required">
+                                        <div class="text-danger">Password is required</div>
+                                    </div>
+
+                                    <div *ngIf="signupForm.get('password').errors.minlength">
+                                        <div class="text-danger">Password must at least have 3 characters.</div>
+                                    </div>
+                                </div>
+                                </div>
+
+                            </div>
+    
+                            <div class="col-sd-12 col-md-6 col-lg-6 mt-3">
+                                <label for="cpassword"><h4>Confirm Password<span class="text-danger">*</span></h4></label>
+                                <input 
+                                    type="password" 
+                                    class="form-control" 
+                                    id="cpassword" 
+                                    placeholder="Enter Confirm Password" 
+                                    formControlName="confirmPassword"
+                                >
+                                <div *ngIf="signupForm.get('confirmPassword').touched">
+                                    <div  *ngIf="signupForm.get('confirmPassword').invalid">
+                                        <div *ngIf="signupForm.get('confirmPassword').errors.required">    
+                                            <div class="text-danger">Re-enter password to confirm</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div *ngIf="signupStatus">
+                                    <div class="text-danger">Password is incorrect.Please enter correct password</div>
+                                </div>  
+                            </div>
+    
+                    </div>
+                </div>
+
+                <div class="row mt-3">
+                        <div class="col-sd-12 col-md-6">
+                        <button type="button" class="btn-primary custom-btn" (click)="addUser(signupForm.value)" [disabled]="!signupForm.valid">Signup</button>
+                        </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+ </div>
+

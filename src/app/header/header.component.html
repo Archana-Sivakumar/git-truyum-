@@ -1,0 +1,67 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+
+        <ul class="navbar-nav">
+            <li><i class="material-icons truyum-icon">local_dining</i>
+            <a class="navbar-brand" href="#">truYum</a></li>
+        </ul>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+
+            <ul class="navbar-nav ml-auto">
+                <div *ngIf=" getUserRole()!='anonymous'">
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/food-menu">Menu Items</a>
+                    </li>
+                </div>
+
+                <div *ngIf=" getUserRole()=='anonymous'">
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="">Menu Items</a>
+                    </li>
+                </div>
+
+                <div *ngIf=" getUserRole()!='admin'&&  getUserRole()=='anonymous'">
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/login">Login</a>
+                    </li>
+                </div>
+
+                <div *ngIf=" getUserRole()!='admin'&&  getUserRole()=='anonymous'">
+                    <li class="nav-item active">
+                    <a class="nav-link" routerLink="/signup">Signup</a>
+                </li>
+                </div>
+
+                <div *ngIf=" getUserRole()!='admin' &&  getUserRole()!='anonymous'" >
+                    <li class="nav-item active">
+                        <a class="nav-link" routerLink="/cart-item">Cart</a>
+                    </li>
+                </div>
+    
+                <div *ngIf=" getUserRole()!='anonymous'">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#"><i class="material-icons">person</i>{{getUserRole()}}</a>
+                    </li>
+                </div>
+
+                <div *ngIf="getUserRole()!='anonymous'">
+                    <li class="nav-item active">
+                        <button type="button" class="btn" (click)="logOff()">Logout</button>
+                    </li>
+                </div>
+            </ul>
+
+        </div>
+
+    </nav>
+</header>	
+
+
+
+
+

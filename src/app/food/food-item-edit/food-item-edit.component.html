@@ -1,0 +1,117 @@
+<div class="container">
+    <h2 class="mt-5">Edit Menu Item</h2>
+
+    <div *ngIf="editMsg">
+      <div class="container-fluid mt-3">
+        
+          <div class="jumbotron status-jumbotron">
+              <h4>Menu Item details saved successfully.</h4>
+          </div>  
+
+      </div>
+    </div>
+
+    <form [formGroup]="foodItemForm">
+
+        <div class="form-group">
+            <div class="row mt-3">
+
+                <div class="col-sd-12 col-md-12">
+                    <label for="title">Item Name</label>
+                    <input class="form-control" id="title" type="text"  name="name" formControlName="itemName">
+                    <div *ngIf="foodItemForm.get('itemName').touched" >
+                        <div *ngIf="foodItemForm.get('itemName').invalid" class="text-danger">
+                            <div *ngIf="foodItemForm.get('itemName').errors.required">
+                                Item Name is required.
+                            </div>
+                      
+                            <div *ngIf="foodItemForm.get('itemName').errors.minlength">
+                                Item Name must at least have 2 characters.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="row">
+  
+                <div class="col-sd-12 col-md-12 col-lg-3 mt-3">
+                       <label for="price">Price</label>
+                        <input type="number" class="form-control" id="price" name="price" formControlName="price">
+                        <div *ngIf="foodItemForm.get('price').touched">
+                            <div  *ngIf="foodItemForm.get('price').invalid">
+                                <div *ngIf="foodItemForm.get('price').errors.required">
+                                   <div class="text-danger">Price is required<div class="text-break">Price can only contain numbers.</div></div>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+    
+                <div class="col-sd-12 col-md-12 col-lg-3 mt-3">
+                    <label for="dateOfLaunch">Date of Launch</label>
+                    <input 
+                        type="date" 
+                        class="form-control" 
+                        id="dateOfLaunch" 
+                        name="dateOfLaunch" 
+                        formControlName="dateOfLaunch" 
+                        value="{{foodItemForm.value.dateOfLaunch | date: 'yyyy-MM-dd'}}"
+                    >
+                    <div *ngIf="foodItemForm.get('dateOfLaunch').touched">
+                        <div  *ngIf="foodItemForm.get('dateOfLaunch').invalid">
+                            <div *ngIf="foodItemForm.get('dateOfLaunch').errors.required">
+                                <div class="text-danger">DateOfLaunch is required</div>
+                            </div>
+                        </div>
+                    </div>
+                </div> 
+    
+                <div class="col-sd-12 col-md-12 col-lg-3 mt-3">
+                    <label for="category">Category</label>
+                        <select class="form-control" id="category" name="category" formControlName="category">
+                           <option>Main Course</option>
+                           <option>Starters</option>
+                           <option>Dessert</option>
+                        </select>
+                </div>
+    
+                <div class="col-sd-12 col-md-12 col-lg-3 mt-3">
+       
+                    <h6><label>Active</label></h6>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" class="form-check-input" name="active" [value]="true" formControlName="active">
+                          Yes
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input type="radio" name="active" [value]="false" formControlName="active">
+                          No
+                    </div>
+            
+                </div>
+            </div>	
+        </div>
+    
+    
+        <div class="form-group">
+            <div class="row mt-3">
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="freeDelivery" formControlName="freeDelivery">
+                        <label>Free Delivery</label>	
+                    </div>	
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-3">
+            <div class="col-sd-12 col-md-6">
+                <button type="submit" class="savebtn" (click)="updateFoodItem(id,foodItemForm.value)"  [disabled]="!foodItemForm.valid">Save</button>
+            </div>
+        </div>
+  
+    </form>
+</div>
+
+

@@ -1,0 +1,48 @@
+<div class="container mt-5">
+	
+    <h2>Cart</h2>
+    
+    <div *ngIf="cartMsg && total!=0">
+        <div class="container-fluid mt-3">
+        
+            <div class="jumbotron status-jumbotron">
+                <h4>Cart Item deleted successfully.</h4>
+            </div>  
+
+        </div>
+    </div>
+
+    <div *ngIf="total==0 || error=='Cart is Empty!'">
+       
+        <div class="jumbotron cart-jumbotron">
+            <h4>No items in cart.Use <a routerLink="/food-menu">'Add to Cart'</a> option in menu item list.</h4>
+        </div> 
+    </div>
+
+    <ul class="list-group">
+        <li class="list-group-item" *ngFor="let cart of cartItem">
+    
+            <div class="d-flex justify-content-between mt-2">
+                <h4 class="card-title text-muted">{{cart.itemName}}</h4>
+                <div>
+                    <h4 class="card-title text-danger"><i class="fa fa-rupee"></i>{{cart.price}}</h4>
+                    <button type="button" class="btn-primary custom-btn" (click)=removeFromCart(cart.id)>
+                       <i class="material-icons">delete_forever</i>
+                    </button>
+                </div>
+            </div>
+      
+        </li>
+
+        <div *ngIf="total>0">
+          <li class="list-group-item">
+            <div class="d-flex justify-content-between mt-2">
+                <h4 class="card-title">Total</h4>
+                <h4 class="card-title text-danger">{{total}}</h4>
+            </div>
+          </li>
+        </div>     
+    </ul>
+
+</div>
+

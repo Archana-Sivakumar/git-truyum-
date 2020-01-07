@@ -1,0 +1,101 @@
+<div class="card m-4">
+
+    <img class="card-img-top" src={{menuItem.imageUrl}} alt="Card image">
+    <div class="card-body">
+ 
+        <div class="d-flex justify-content-between mt-2">
+
+            <h4 class="card-title text-muted">{{menuItem.itemName}}</h4>
+            <h4 class="card-title text-danger"><i class="fa fa-rupee">{{menuItem.price}}</i></h4>
+
+        </div>
+
+        <div class="d-flex justify-content-between mt-2">
+            
+            <div class="text-muted">
+                <div *ngIf="userRoleName=='admin'">
+                    <div *ngIf="menuItem.active=='Yes'; else elseBlock">
+                        <span class="badge badge-success">Active</span>
+                        <span>{{menuItem.category}}</span>    
+                    </div>
+                    <ng-template #elseBlock>
+                        <span class="badge badge-danger">Inactive</span><span>{{menuItem.category}}</span>
+                    </ng-template>
+                </div>
+                <div *ngIf="userRoleName!='admin'">
+                        <span>{{menuItem.category}}</span>  
+                </div>   
+            </div>
+            
+            <div>
+                <div *ngIf="menuItem.freeDelivery=='Yes'">
+                    <i class="material-icons truck-icon">local_shipping</i>
+                    <span class="badge badge-pill badge-info">
+                        Free
+                    </span>       
+                </div>
+            </div>
+        
+        </div>
+
+        <div *ngIf="cartMsg && menuItem.id==addedItemId">
+            <div class="container-fluid mt-3">
+                        
+                <div class="jumbotron status-jumbotron">
+                    <h4>Item added successfully.</h4>
+                </div>  
+
+            </div>
+        </div>
+        
+        <div class="d-flex justify-content-between mt-3">
+            <div *ngIf="userRoleName=='admin'">
+                <div class="text-muted">				    
+                   <i class="material-icons text-muted">access_time</i>
+                    Launch
+                    <div class="text-break">{{menuItem.dateOfLaunch | date:'dd/MM/yyyy'}}</div>
+                </div>
+            </div>
+
+            <div *ngIf="userRoleName=='admin'">
+                <button type="button" class="btn-primary custom-btn" (click)="editMenuItem(menuItem.id)">
+                    <i class="material-icons">edit</i>Edit
+                </button>
+            </div>
+            
+            <div *ngIf="userRoleName!='admin'">
+                <button type="button" class="btn-primary custom-btn" (click)=addToCart(menuItem.id)>
+                        <i class="material-icons">add_shopping_cart</i>
+                        Add to Cart
+                </button>
+           </div>
+            
+        </div>
+
+    </div>
+</div>
+
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

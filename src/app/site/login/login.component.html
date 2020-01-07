@@ -1,0 +1,84 @@
+<div class="container">
+    <div class="card login-card mt-5">
+        <div class="card-body">
+            <h2 class="mt-2">Login</h2>
+
+            <form #loginForm="ngForm">
+                
+                <div *ngIf="isAnonymousUser" class="jumbotron login-jumbotron">
+                    <h4>Please login before adding an item to Cart</h4>
+                </div>  
+
+                <div *ngIf="errorMsg" class="jumbotron empty-jumbotron">
+                    <h4>Invalid Username/Password.</h4>
+                </div> 
+
+                <div class="form-group">
+                    <div class="row mt-3">
+                        <div class="col-md-12 col-lg-12">
+                
+                            <label for="uname">Username</label>
+                            <input 
+                                type="text" 
+                                class="form-control" 
+                                id="uname" 
+                                placeholder="Enter Username" 
+                                name="userName" #userName="ngModel" 
+                                [(ngModel)]="name" required
+                            >
+                            <div *ngIf="userName.touched">
+                                <div *ngIf="userName.invalid" class="text-danger">
+                                    <div *ngIf="userName.errors.required">
+                                        User Name is required.
+                                    </div>
+                                </div>
+                            </div>
+                    
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="row">
+                        <div class="col-sd-12 col-md-12 col-lg-12 mt-3">
+            
+                            <label for="password">Password</label>
+                            <input type="password" 
+                                class="form-control" 
+                                id="password" 
+                                placeholder="Enter Password"  
+                                name="passWord"  
+                                #userPassword="ngModel"  
+                                [(ngModel)]="password"  
+                                required
+                            >
+                            <div *ngIf="userPassword.touched">
+                                <div *ngIf="userPassword.invalid" class="text-danger">
+                                    <div *ngIf="userPassword.errors.required">
+                                        Password is required.
+                                    </div>
+                                </div>
+                            </div>
+                
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between mt-5">
+                    <div>
+                        <button type="button" class="btn-primary custom-btn" (click)="loginDetails()" [disabled]="!loginForm.valid">Login</button>
+                    </div>
+                    <div>
+                        New here?<a routerLink="/signup">Signup</a>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+
+
